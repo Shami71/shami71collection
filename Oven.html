@@ -1,0 +1,123 @@
+<!doctype html>
+ <html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <title>電子レンジの温め時間変えるやつ</title>
+    <style>
+    body{
+         font-size:150%;
+         background-color:#ffdab9;
+         font-family:sans-serif;
+        }
+        .number{
+                width:10%;
+                padding:10px 20px;
+                font-size:100%;
+                background:#f08080;
+                border:3px solid #000000;
+            }
+        .RED{
+             color:red;
+            }
+        p{
+          font-size:140%;
+          }
+    select{
+           border:1px solid #000000;
+           font-size: 100%;
+           background:#e9967a;
+          }
+    .button{padding:10px 20px;
+            font-size:100%;
+            background:linear-gradient(#f08080,#ffa07a);
+            border:3px solid #4169e1; 
+            }
+    .reload{padding:10px 20px;
+            font-size:100%;
+            background:linear-gradient(#ffa07a,#f08080);
+            border:3px solid #000000;
+            </style>
+</head>
+<body>
+  <center>
+    <h1>電子レンジ温め時間変換</h1>
+            <img id="Renzi" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg4VE6fCOVk69QRRZ3a_zc9SBTBS9jYJCiYRM2qDoGcEzJywr18pf5naPiw_mCByD_YuGePiulagfw9rFyEC0miDaSqg_wOC0ViJ_8giHHErr-f8AfwByCGW-dJ1ZNrh31T2lQ_oB_SFCkG/s800/microwave2_open_sara.png" alt="電子レンジ" width="25%">
+    <h2>ながーい温め時間を待つのは面倒くさいですよね？
+    <br>早く温めて<span class="RED">時間削減</span>ちゃいましょう</h2>
+    <lebel><p><input type="number" id="min" class="number" min="0">分
+              <input type="number" id="sec" class="number" min="0" max="59">秒</p></lebel>
+    <label><p>熱量<select id="hot">
+    <option value="100">100W</option>
+    <option value="150">150W</option>
+    <option value="200">200W</option>
+    <option value="300">300W</option>
+    <option value="400">400W</option>
+    <option value="500">500W</option>
+    <option value="600">600W</option>
+    <option value="700">700W</option>
+    <option value="800">800W</option>
+    <option value="900">900W</option>
+    <option value="1000">1000W</option>
+    <option value="1200">1200W</option>
+    <option value="1500">1500W</option>
+    </select>
+    変更後の熱量<select id="nexthot">
+    <option value="100">100W</option>
+    <option value="150">150W</option>
+    <option value="200">200W</option>
+    <option value="300">300W</option>
+    <option value="400">400W</option>
+    <option value="500">500W</option>
+    <option value="600">600W</option>
+    <option value="700">700W</option>
+    <option value="800">800W</option>
+    <option value="900">900W</option>
+    <option value="1000">1000W</option>
+    <option value="1200">1200W</option>
+    <option value="1500">1500W</option>
+    </select></p>
+    <p id="Answer"><input type="button" class="button" value="温め計算開始！" onclick="GO()"></p></label>
+    <button class="reload" onclick="window.location.reload();">もう一回！</button>
+<script>
+function GO() {
+    const min=document.getElementById("min").value;
+    var nmin=Number(min)*60;
+    const sec=document.getElementById("sec").value;
+    var nsec=Number(sec);
+    const hot=document.getElementById("hot").value;
+    var nhot=Number(hot);
+    const nexthot=document.getElementById("nexthot").value;
+    var nnexthot=Number(nexthot);
+    var value1=nsec+nmin;
+    var v2=value1*nhot/nnexthot;
+
+    var Amin=v2/60;
+    var AmF=Math.floor(Amin);
+    var value=v2-AmF*60;
+
+
+  if(min==""&&sec==""){
+      alert("時間が指定されていません。");
+    }else if(nmin==0&&nsec==0){
+      alert("0分0秒では計算ができません。正しい数字を入力してください。")
+    }else if(hot==nexthot){
+      alert("ワット数が等しいです。");
+    }else if(nsec>=60){
+       alert("秒数が60秒を超えています。");
+    }else if(nmin<0||nsec<0){
+       alert("時間がマイナスになっています。");
+    }else{
+      document.getElementById("Answer").innerHTML= AmF+"分"+value+"秒";
+      
+    var random=Math.floor(Math.random()*3);
+      if(random==0){
+document.getElementById("Renzi").src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg32uJ50b3bCEybpgUN08icExsQI3MlCTOrw-dJQYWYEpA5kT1I8_dFrEWav56CjmriFQw8X6MViOLoXDOu0gaAX32l_8xyUzFTA1BXQTnsWeE57MIIzf11i3R5A4xCZm9xp3ciZEnhY1R1/s800/microwave6_bakuhatsu.png";
+          }else{
+document.getElementById("Renzi").src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1Pfre9LaVV7c7wL9KYNcjFyXk2lQeaQAZcW8d2X3wZGw9COoZBUI6akJHLTKsUL64kzp1l-KuBWFpR8JW94KAvXPs_9j_a07dSsAHvxTg4uTEXdXgW3ujKAVf8VgzgkY1CfOA27GqYHZ0/s800/microwave4_atatame.png";
+          }
+    }
+    }
+</script>
+  </center>
+</body>
+</html>
