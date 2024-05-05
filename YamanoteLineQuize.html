@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <meta charset="UTF-8">
+ <head>
+ <style>
+body{
+     background-color:#80c342;
+     font-family:"Hiragino Sans";
+     font-size:50px;
+}
+.RED{
+     color:red;
+     background-color:#000000;
+     width:100%;
+    }
+.INTRODUCTION{
+              font-size:55%;
+              }
+.Button{
+    font-size:30px;
+    width: 45%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 3px solid #68779a;
+    background: #ffffff;
+    cursor: pointer;
+}
+.AnswerButton{
+  font-size:50px; 
+  width:25%;
+  border:2px solid yellow;
+  background:white;
+
+</style>
+  <title>山手線駅クイズ</title>
+ </head>
+
+ <body>
+<h1 class="RED">山手線の駅クイズ！</h1>
+<p class="INTRODUCTION">「山手線の◯回りで〇〇駅の◯つ◯の駅は？」という問題を解けます。<br>
+    正直、山手線の駅名覚えるより<strong>古文単語とか覚えたほうがいい</strong>と思います。</p>
+<h3 id="Question"></h3>
+<script>
+
+var ST=["品川","大崎","五反田","目黒","恵比寿","渋谷","原宿","代々木","新宿","新大久保",
+　　　　"高田馬場","目白","池袋","大塚","巣鴨","駒込","田端","西日暮里","日暮里","鶯谷",
+　　　　"上野","御徒町","秋葉原","神田","東京","有楽町","新橋","浜松町","田町","高輪ゲートウェイ"];
+var RS=Math.floor(Math.random()*30);
+var Qu=ST[RS];
+var Co=Math.floor(Math.random()*3);
+var PM=["1","2","3"];
+var AT=PM[Co];
+var IO=["-1","1"];
+
+var CN=Math.floor(Math.random()*2);
+var CS=["外","内"];
+
+ if(CN==0){
+  var Wo=["先","前"];
+ }else{
+  var Wo=["前","先"];
+ }
+var NN=Math.floor(Math.random()*2);
+var mp=IO[NN];
+var NW=Wo[NN];
+var NA=mp*AT;
+var Nu=RS-NA;
+var AS=["浜松町","田町","高輪ゲートウェイ","品川","大崎","五反田","目黒","恵比寿","渋谷","原宿","代々木","新宿","新大久保",
+　　　　"高田馬場","目白","池袋","大塚","巣鴨","駒込","田端","西日暮里","日暮里","鶯谷",
+　　　　"上野","御徒町","秋葉原","神田","東京","有楽町","新橋","浜松町","田町","高輪ゲートウェイ","品川","大崎","五反田"];
+var AK=Nu+3;
+var An=AS[AK];
+var Up='山手線'+CS[CN]+'回りで、<br>'+Qu+'駅の'+AT+'つ'+NW+'の駅は？';
+document.getElementById("Question").innerHTML=Up;
+function Show(){
+ alert("正解は"+An+"駅");
+}
+</script>
+<center>
+<input class="AnswerButton" id="AnswerButton1" type="button" value="Answer1" onclick="Answer1()">
+<input class="AnswerButton" id="AnswerButton2" type="button" value="Answer2" onclick="Answer2()">
+<input class="AnswerButton" id="AnswerButton3" type="button" value="Answer3" onclick="Answer3()">
+<input type="button" class="Button" value="正解発表"
+ onclick="Show()">
+<button class="Button" onclick="window.location.reload();">再挑戦</button><br>
+</center>
+<script>
+var Adjust=Math.floor(Math.random()*3);
+
+if(Adjust===0){
+ var Type1=AS[AK];
+ var Type2=AS[Math.floor(Math.random()*36)];
+ var Type3=AS[Math.floor(Math.random()*36)];
+  function Answer1(){
+   alert("正解");
+  }
+function Answer2(){
+   alert("不正解");
+  }
+function Answer3(){
+   alert("不正解");
+  }
+}else if(Adjust===1){
+ var Type1=AS[Math.floor(Math.random()*36)];
+ var Type2=AS[AK];
+ var Type3=AS[Math.floor(Math.random()*36)];
+
+  function Answer1(){
+   alert("不正解");
+  }
+function Answer2(){
+   alert("正解");
+  }
+function Answer3(){
+   alert("不正解");
+  }
+}else{
+ var Type1=AS[Math.floor(Math.random()*36)];
+ var Type2=AS[Math.floor(Math.random()*36)];
+ var Type3=AS[AK];
+
+function Answer1(){
+   alert("不正解");
+  }
+function Answer2(){
+   alert("不正解");
+  }
+function Answer3(){
+   alert("正解");
+  }
+}
+if(Type1===Type2||Type2===Type3||Type1===Type3){
+ window.location.reload();
+}
+
+document.getElementById("AnswerButton1").value=Type1;
+document.getElementById("AnswerButton2").value=Type2;
+document.getElementById("AnswerButton3").value=Type3;
+
+</script>
+
+<p class="INTRODUCTION">高輪ゲートウェイなど、長い駅名が選択肢に選ばれた場合に駅名が見切れる可能性があります。<br>
+   諸事情により、ごくたまに画面表示が一瞬おかしくなる場合があります。特に気にしないでください。<br>
+   マジでHTMLコードが下手です。開発者ツールとかでソースコード覗かないでください。言いましたからね？</p>
+    
+     
+</body>
+</html>
+
