@@ -47,7 +47,7 @@
     <br>早く温めて<span class="RED">時間削減</span>ちゃいましょう</h2>
     <lebel><p><input type="number" id="min" class="number" min="0">分
               <input type="number" id="sec" class="number" min="0" max="59">秒</p></lebel>
-    <label><p id="Time">熱量<select id="hot">
+    <label><h4 id="Time">熱量<select id="hot">
     <option value="100">100W</option>
     <option value="150">150W</option>
     <option value="200">200W</option>
@@ -76,8 +76,8 @@
     <option value="1000">1000W</option>
     <option value="1200">1200W</option>
     <option value="1500">1500W</option>
-    </select></p>
-    <p id="Answer"><input type="button" class="button" value="温め計算開始！" onclick="GO()"></p></label>
+    </select></h4>
+    <h3 id="Answer"><input type="button" class="button" value="温め計算開始！" onclick="GO()"></h3></label>
     <button class="reload" onclick="window.location.reload();">もう一回！</button>
 <script>
 function GO() {
