@@ -37,6 +37,12 @@
             font-size:100%;
             background:linear-gradient(#ffa07a,#f08080);
             border:3px solid #000000;
+     .Provision{
+                text-align:right;
+               }
+       .Web{
+           text-decoration:none;
+          }
             </style>
 </head>
 <body>
@@ -47,7 +53,7 @@
     <br>早く温めて<span class="RED">時間削減</span>ちゃいましょう</h2>
     <lebel><p><input type="number" id="min" class="number" min="0">分
               <input type="number" id="sec" class="number" min="0" max="59">秒</p></lebel>
-    <label><h4 id="Time">熱量<select id="hot">
+    <label><h2 id="Time">熱量<select id="hot">
     <option value="100">100W</option>
     <option value="150">150W</option>
     <option value="200">200W</option>
@@ -76,9 +82,10 @@
     <option value="1000">1000W</option>
     <option value="1200">1200W</option>
     <option value="1500">1500W</option>
-    </select></h4>
-    <h3 id="Answer"><input type="button" class="button" value="温め計算開始！" onclick="GO()"></h3></label>
+    </select></h2>
+    <h2 id="Answer"><input type="button" class="button" value="温め計算開始！" onclick="GO()"></h2></label>
     <button class="reload" onclick="window.location.reload();">もう一回！</button>
+     <h3 class="Provision">写真素材:<a class="Web" href="https://www.irasutoya.com/">いらすとや</a></h3>
 <script>
 function GO() {
     const min=document.getElementById("min").value;
