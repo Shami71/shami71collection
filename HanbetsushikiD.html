@@ -71,9 +71,10 @@ else if(D<0){
  var result="数字が正しく入力されていません。";
 }
 }
- var CAL1pre=-b+D;
+ var RootD=Math.sqrt(D);
+ var CAL1pre=-b+RootD;
  var CAL1=CAL1pre/2;
- var CAL2pre=-b-D;
+ var CAL2pre=-b-RootD;
  var CAL2=CAL2pre/2;
  document.getElementById("Answer").innerHTML= "X="+CAL1+","+CAL2;
 
