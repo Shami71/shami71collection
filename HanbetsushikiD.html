@@ -23,15 +23,6 @@ var a=prompt("aの値","");
 var b=prompt("bの値","");
 var c=prompt("cの値","");
 
-
-if(a==""||a==null||a=="0"||b==""||b==null||c==""||c==null){
-  alert("数字を正しく入力してください。入力したい数字が0の場合は、0と入力してください。aの値は必ず0以外を入力してください。");
-    document.getElementById("Answer").innerHTML="数字を正しく入力してください。入力したい数字が0の場合は、0と入力してください。<br>aの値は必ず0以外を入力してください。";
-    document.getElementById("value").innerHTML="「再実行」を押して、正しく数字を入力してください。";
-    document.getElementById("formula").innerHTML="";
-    document.getElementById("D").innerHTML="";
-    document.getElementById("result").innerHTML="";
-}else{
 if(a>1){
      var va=a+"x^2";
     }else if(a==1){
@@ -75,20 +66,25 @@ else if(D<0){
 }else{
  var result="数字が正しく入力されていません。";
 }
-}
  var RootD=Math.sqrt(D);
  var CAL1pre=-b+RootD;
  var CAL1=CAL1pre/(2*a);
  var CAL2pre=-b-RootD;
  var CAL2=CAL2pre/(2*a);
-    if(D==0){
+if(a==""||a==null||a=="0"||b==""||b==null||c==""||c==null){
+    alert("数字を正しく入力してください。入力したい数字が0の場合は、0と入力してください。aの値は必ず0以外を入力してください。");
+    document.getElementById("value").innerHTML="数字を正しく入力してください。入力したい数字が0の場合は、0と入力してください。aの値は必ず0以外を入力してください。";
+    document.getElementById("formula").innerHTML="";
+    document.getElementById("D").innerHTML="";
+    document.getElementById("result").innerHTML="";
+}else{
+        if(D==0){
  document.getElementById("Answer").innerHTML= "x="+CAL1;
+    }else if(D<0){
+ document.getElementById("Answer").innerHTML ="実数解の場合のみ解を表示します。";
     }else{
  document.getElementById("Answer").innerHTML= "X="+CAL1+","+CAL2;
     }
-    
-    alert=alert(result);
-
     document.getElementById("value").innerHTML="a="+a+",b="+b+",c="+c;
     document.getElementById("formula").innerHTML="式は"+va+vb+vc+"となります。";
     document.getElementById("D").innerHTML="D="+D;
