@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>判別式Dチェッカー</title>
+<link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwCxAolQw2K7WcbduqGlI4-r4elMWZFoTAPLblrecuT_B0fFBLlI6Su_yE1wdMg-fHmpFzlS_5Cxk00YMf3XKvebhX-zmYc2bToYzdSrn6Kj0wE8V_pKd8axLAb5P7PHHS7KuHQ0QR5cv8/s400/bunbougu_dentaku.png">
 </head>
 
 <body bgcolor="b0c4de">
@@ -74,14 +75,7 @@ else if(D<0){
  var CAL1=CAL1pre/(2*a);
  var CAL2pre=-b-RootD;
  var CAL2=CAL2pre/(2*a);
-if(a==""||a==null||a=="0"||b==""||b==null||c==""||c==null){
-    alert("数字を正しく入力してください。入力したい数字が0の場合は、0と入力してください。aの値は必ず0以外を入力してください。");
-    document.getElementById("value").innerHTML="数字を正しく入力してください。入力したい数字が0の場合は、0と入力してください。aの値は必ず0以外を入力してください。";
-    document.getElementById("formula").innerHTML="";
-    document.getElementById("D").innerHTML="";
-    document.getElementById("result").innerHTML="";
-}else{
-        if(D==0){
+if(D==0){
  document.getElementById("Answer").innerHTML= "x="+CAL1;
     }else if(D<0){
  document.getElementById("Answer").innerHTML ="実数解の場合のみ解を表示します。";
