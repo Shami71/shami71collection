@@ -1,0 +1,137 @@
+<!doctype html>
+    <html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>判別式Dチェッカー</title>
+<link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwCxAolQw2K7WcbduqGlI4-r4elMWZFoTAPLblrecuT_B0fFBLlI6Su_yE1wdMg-fHmpFzlS_5Cxk00YMf3XKvebhX-zmYc2bToYzdSrn6Kj0wE8V_pKd8axLAb5P7PHHS7KuHQ0QR5cv8/s400/bunbougu_dentaku.png">
+<style>
+    .box{
+         width:7%;
+         border-radius:15px;
+         border:solid 2px #c0c0c0;
+         background-color:#f5f5f5:
+         }
+    .box:focus{
+               background-color:#f5f5f5;
+               }
+    .calculate:focus{
+                     background-color:skyblue;
+                    }
+    .reload:focus{
+                  color:#ffffff;
+                  background-color:#696969;
+                 }
+    .answer{
+            color:red;
+            }
+    .use{
+         text-align:left;
+         padding-left:5%;
+         }
+           
+</style>
+</head>
+
+<body bgcolor="b0c4de">
+    <center>
+
+<h1><font face="serif">判別式D&解チェッカー</font></h1>
+
+    <p>a=<input type="number" id="avalue" class="box" value="1">,b=<input type="number" id="bvalue" class="box">,c=<input type="number" id="cvalue" class="box"></p>
+    <input type="button" value="Calculate" class="calculate" onclick="start()">
+
+    <p id="value"></p>
+    <p id="formula"></p>
+    <p id="D"></p>
+    <p id="result"></p>
+    <p id="Answer"　class="answer"></p>
+<button onclick="window.location.reload()" class="reload";">再実行</button>
+
+</center><h2>使い方 How to Use</h2>
+<p id="use">1.「a=」「b=」「c=」の隣にあるテキストボックスに、二次方程式ax^2+bx^+cのa,b,cの値をそれぞれ入力します。<br>
+   2.「Calculate」ボタンをクリックします。すると答えが出てきます。<br>
+   3.もう一度計算するときは、「再実行」ボタンを押すか、a,b,cの値を入力し直してください。</p>
+<h2>注意 Attention</h2>
+<p id="use">aの値は必ず入力してください。<br>テキストボックスを空白のまま計算した場合、その値は0とします。<br>虚数解の値は出ません。<br>解は、√の形ではなく少数で表示されます。</p>
+
+<script>
+ function start(){
+    
+var a=document.getElementById("avalue").value;
+var b=document.getElementById("bvalue").value;
+ if(b==""){
+      b="0"
+         }
+var c=document.getElementById("cvalue").value;
+
+if(a==""||a==0){
+     alert("aの値は必ず入れてください。");
+    }else{
+     
+ if(c==""){
+      c="0";
+         }
+if(a>1){
+     var va=a+"x^2";
+    }else if(a==1){
+     var va="x^2";
+    }else if(a==-1){
+     var va="-x^2"
+    }else if(a<-1){
+     var va=a+"x^2";
+    }
+
+if(b>1){
+     var vb="+"+b+"x";
+    }else if(b==1){
+     var vb="+x";
+    }else if(b==0){
+     var vb="";
+    }else if(b==-1){
+     var vb="-x";
+    }else if(b<-1){
+     var vb=b+"x";
+    }
+
+if(c>0){
+     var vc="+"+c;
+    }else if(c==0){
+     var vc="";
+    }else if(c<0){
+     var vc=c;
+    }
+
+var D=b**2-4*a*c;
+
+if(D>0){
+ var result="異なる2つの実数解をもちます。";
+}
+else if(D==0){
+ var result="重解をもちます。";
+}
+else if(D<0){
+ var result="実数解をもちません。異なる2つの虚数解をもちます。";
+}else{
+ var result="数字が正しく入力されていません。";
+}
+ var RootD=Math.sqrt(D);
+ var CAL1pre=-b+RootD;
+ var CAL1=CAL1pre/(2*a);
+ var CAL2pre=-b-RootD;
+ var CAL2=CAL2pre/(2*a);
+if(D==0){
+ document.getElementById("Answer").innerHTML= "x="+CAL1;
+    }else if(D<0){
+ document.getElementById("Answer").innerHTML ="実数解の場合のみ解を表示します。";
+    }else{
+ document.getElementById("Answer").innerHTML= "X="+CAL1+","+CAL2;
+    }
+    document.getElementById("value").innerHTML="a="+a+",b="+b+",c="+c;
+    document.getElementById("formula").innerHTML="式は"+va+vb+vc+"となります。";
+    document.getElementById("D").innerHTML="判別式D="+D;
+    document.getElementById("result").innerHTML=result;
+     }
+}
+</script>
+</body>
+</html>
