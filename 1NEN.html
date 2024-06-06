@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+ <meta charset="UTF-8">
+ <title>情報部 いざ青春</title>
+ <style>
+.WELCOME{line-height:5px;
+         }
+.JABIG{color:#ff0000;
+       border-bottom=solid 4px #000000;
+      }
+.ENBIG{color:#ff0000;
+      }
+.HEADING{border-left:solid 3px #ff7f50;
+         color:#696969;
+        }
+.RED{color:#ff4500;
+     border-bottom:solid 2px #000000;
+   }
+.UNDER{border-bottom:solid 2px #000000;
+      }
+.BUTTON{width:100px;
+        height:60px;
+        font-size:40px;
+        }
+     
+  </style>
+</head>
+<body>
+<div class="WELCOME">
+ <h1 class="JABIG">情報部へようこそ！！</h1>
+  <h2 class="ENBIG">Welcome To Information Club!</h2>
+</div>
+ <h2 class="HEADING">情報部の活動内容 What's information club?</h2>
+  <p>私たちは毎週<span class="RED">月・水・金曜日</span>に<span class="UNDER">4階CAI室(コンピューター実習室)</span>で活動しています。</p>
+  <p>活動は、パソコン関係ならなんでもOK！<span class="UNDER"></p>
+  <p>プログラミング</span>や<span class="UNDER">動画編集</span>に<span class="UNDER">音楽制作</span>、<span class="UNDER">3Dプリントや</span>、そして一番は<span class="RED">イラスト制作</span>です。</p>
+<img src="Hatsune.jpg" alt="初音ミクのイラスト">
+ <p>かわいいですね〜。他の作品は以下のホームページから！
+<a href="https://tsuruinfo.wixsite.com/mysite">情報部の公式サイト</a>
+<h3>パソコン未経験でも大歓迎！！興味があったらぜひ見に来てね！！</h3>
+<h2 class="HEADING">情報部、見学してみる？</h2>
+<input type="button" class="BUTTON" value="YES" onclick="yes()"> or
+<input type="button" class="BUTTON" value="YES" onclick="yes()">
+<script>
+const date=new Date();
+const week=date.getDay();
+const weekItems=["日","月","火","水","木","金","土"];
+const dayOfWeek=weekItems[week];
+    if(week===1||week===3||week===5){
+        document.write("今日は"+dayOfWeek+"曜日なので活動しています！見学きてね！");
+    }else{
+        document.write("今日は"+dayOfWeek+"曜日なので活動していません...次回の活動日に見学きてね！");
+        }
+function yes(){
+   alert("絶対だよ？！笑 まぁ時間あるときに見学来てくれるといいな〜");
+    }
+</script>
+</body>
+</html>

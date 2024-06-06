@@ -1,0 +1,104 @@
+<!doctype html>
+ <html lang="ja">
+ <head>
+  <title>ナベアツ</title>
+  <meta charset="UTF-8">
+
+<style>
+    .border{
+            border-bottom:solid 2px;
+           }
+h1{
+   font-size:500%;
+   }
+p{
+  font-size:250%;
+  }
+.Number{
+        width:65%;
+        padding:10px 20px;
+        font-size:300%;
+        background:#f08080;
+        border:3px solid #000000;
+        text-align: center;
+        }
+button{
+       width:50%;
+       font-size:100px;
+       background:f08080;
+       text-align:center;
+       }
+</style>
+ </head>
+ <body>
+<center>
+     <h1>ナベアツ判定機<br>Nabeatsu Calculator</h1>
+     <p><a href="https://profile.yoshimoto.co.jp/talent/detail?id=83">世界のナベアツ</a>という人物をご存知だろうか。<br>
+        彼は、<span class="border">3の倍数と3が付く数字のときだけアホになる</span>のだ。<br>
+        このサイトでは、任意の数字によって世界のナベアツがアホになるかを確かめることができる。<br>
+        下のボックスに好きな数字を入れて、ボタンを押してみよう。</p>
+<input type="number" max="9999999999999999" id="Number" class="Number">
+<p id="FoolButton"><input type="button" value="アホになる？" onclick="Click()" class="Number"></p>
+<button class="Button" onclick="window.location.reload();">もういちど</button>
+
+<script>
+function Click(){
+  var num=document.getElementById("Number").value;
+  var L1=num.substring(0,1);
+    var LN1=Number(L1);
+  var L2=num.substring(1,2);
+    var LN2=Number(L2);
+  var L3=num.substring(2,3);
+    var LN3=Number(L3);
+  var L4=num.substring(3,4);
+    var LN4=Number(L4);
+  var L5=num.substring(4,5);
+    var LN5=Number(L5);
+  var L6=num.substring(5,6);
+    var LN6=Number(L6);
+  var L7=num.substring(6,7);
+    var LN7=Number(L7);
+  var L8=num.substring(7,8);
+    var LN8=Number(L8);
+  var L9=num.substring(8,9);
+    var LN9=Number(L9);
+  var L10=num.substring(9,10);
+    var LN10=Number(L10);
+  var L11=num.substring(10,11);
+    var LN11=Number(L11);
+  var L12=num.substring(11,12);
+    var LN12=Number(L12);
+  var L13=num.substring(12,13);
+    var LN13=Number(L13); 
+  var L14=num.substring(13,14);
+    var LN14=Number(L14);
+  var L15=num.substring(14,15);
+    var LN15=Number(L15);
+  var L16=num.substring(15,16);
+    var LN16=Number(L16);
+  var SUM=LN1+LN2+LN3+LN4+LN5+LN6+LN7+LN8+LN9+LN10+LN11+LN12+LN13+LN14+LN15+LN16;
+　var Serious=num+"(真面目)";
+  var Fool="サーーーーン!?!?!???!wwwwwwwwwwww"
+
+  if(num==""){
+       alert("数字入れてくれ。");
+}else if(num>9999999999999999){
+       alert("9999999999999999を超えています。数字を小さくしてもらえると助かります。");
+     }else if(LN1==3||LN2==3||LN3==3||LN4==3||LN5==3||LN6==3||LN7==3||LN8==3||LN9==3||LN10==3||LN11==3||LN12==3||LN13==3||LN14==3||LN15==3||LN16==3){
+       alert(Fool);
+       document.getElementById(FoolButton).innerHTML=Fool;
+     }else if((SUM % 3)==0){
+       alert(Fool);
+       document.getElementById(FoolButton).innerHTML=Fool;
+      }else{
+       alert(Serious);
+       document.getElementById(FoolButton).innerHTML=Serious;
+      }
+    }
+    
+    
+</script>
+ </center>    
+ </body>
+
+ </html>
