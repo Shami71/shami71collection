@@ -2,88 +2,19 @@
     <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="1;URL=https://shami71.github.io/shami71collection/2CAL.html">
+<meta http-equiv="refresh" content="5;URL=https://shami71.github.io/shami71collection/2CAL.html">
 <title>判別式Dチェッカー</title>
 <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwCxAolQw2K7WcbduqGlI4-r4elMWZFoTAPLblrecuT_B0fFBLlI6Su_yE1wdMg-fHmpFzlS_5Cxk00YMf3XKvebhX-zmYc2bToYzdSrn6Kj0wE8V_pKd8axLAb5P7PHHS7KuHQ0QR5cv8/s400/bunbougu_dentaku.png">
 </head>
 
 <body bgcolor="b0c4de">
     <center>
-
-<h1><font face="serif">判別式Dチェッカー</font></h1>
-    <p id="value"></p>
-    <p id="formula"></p>
-    <p id="D"></p>
-    <p id="result"></p>
-    <p id="Answer"></p>
-<button onclick="window.location.reload();">再実行</button>
+<h1>7月2日より、判別式Dチェッカーはリニューアルいたしました。<br>
+    5秒後に新たなページへ自動ジャンプします。</h1>
+<h2>ジャンプしない場合は、以下のURLをクリックしてください。</h2>
+<a href="https://shami71.github.io/shami71collection/2CAL.html">https://shami71.github.io/shami71collection/2CAL.html</a>
 
 </center>
 
-<script>
-var a=prompt("aの値","");
-var b=prompt("bの値","");
-var c=prompt("cの値","");
-if(a>1){
-     var va=a+"x^2";
-    }else if(a==1){
-     var va="x^2";
-    }else if(a==-1){
-     var va="-x^2"
-    }else if(a<-1){
-     var va=a+"x^2";
-    }
-
-if(b>1){
-     var vb="+"+b+"x";
-    }else if(b==1){
-     var vb="+x";
-    }else if(b==0){
-     var vb="";
-    }else if(b==-1){
-     var vb="-x";
-    }else if(b<-1){
-     var vb=b+"x";
-    }
-
-if(c>0){
-     var vc="+"+c;
-    }else if(c==0){
-     var vc="";
-    }else if(c<0){
-     var vc=c;
-    }
-
-var D=b**2-4*a*c;
-
-if(D>0){
- var result="異なる2つの実数解をもちます。";
-}
-else if(D==0){
- var result="重解をもちます。";
-}
-else if(D<0){
- var result="実数解をもちません。異なる2つの虚数解をもちます。";
-}else{
- var result="数字が正しく入力されていません。";
-}
- var RootD=Math.sqrt(D);
- var CAL1pre=-b+RootD;
- var CAL1=CAL1pre/(2*a);
- var CAL2pre=-b-RootD;
- var CAL2=CAL2pre/(2*a);
-if(D==0){
- document.getElementById("Answer").innerHTML= "x="+CAL1;
-    }else if(D<0){
- document.getElementById("Answer").innerHTML ="実数解の場合のみ解を表示します。";
-    }else{
- document.getElementById("Answer").innerHTML= "X="+CAL1+","+CAL2;
-    }
-    document.getElementById("value").innerHTML="a="+a+",b="+b+",c="+c;
-    document.getElementById("formula").innerHTML="式は"+va+vb+vc+"となります。";
-    document.getElementById("D").innerHTML="D="+D;
-    document.getElementById("result").innerHTML=result;
-
-</script>
 </body>
 </html>
