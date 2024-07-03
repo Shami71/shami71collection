@@ -4,13 +4,29 @@
 <meta charset="UTF-8">
 <meta http-equiv="refresh" content="5;URL=https://shami71.github.io/shami71collection/2CAL.html">
 <title>判別式Dチェッカー</title>
-<link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwCxAolQw2K7WcbduqGlI4-r4elMWZFoTAPLblrecuT_B0fFBLlI6Su_yE1wdMg-fHmpFzlS_5Cxk00YMf3XKvebhX-zmYc2bToYzdSrn6Kj0wE8V_pKd8axLAb5P7PHHS7KuHQ0QR5cv8/s400/bunbougu_dentaku.png">
 </head>
 
 <body bgcolor="b0c4de">
+
+<script>
+       var counter=5;
+ window.onload=function(){
+ var countdown=setInterval(event,1000);
+ function event(){
+     counter--;
+document.getElementById("counter").innerHTML=counter;
+      if(counter==0){
+    clearInterval(countdown);
+     }
+     }
+    }
+</script>
+
+      
+    
     <center>
 <h1>7月2日より、判別式Dチェッカーはリニューアルいたしました。<br>
-    5秒後に新たなページへ自動ジャンプします。</h1>
+    <span id="counter" style="color:red;"></span>秒後に新たなページへ自動ジャンプします。</h1>
 <h2>ジャンプしない場合は、以下のURLをクリックしてください。</h2>
 <a href="https://shami71.github.io/shami71collection/2CAL.html">https://shami71.github.io/shami71collection/2CAL.html</a>
 
@@ -18,3 +34,4 @@
 
 </body>
 </html>
+
