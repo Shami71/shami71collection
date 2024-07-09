@@ -122,7 +122,7 @@ p{
 <img class="adimg" id="ADimg" src="2caldisplay.jpg" alt="Ad"><br>
 <label>広告変更まで...
   <progress max="300" value="0" id="progress"></progress>
- ブラウザバックした際に このバーが狂う場合があります。ページをリロードすることで直ります。
+ ブラウザバックした際に このバーが狂う場合があります。すぐに直ります。
 </label>
  </a>
 </div>
@@ -135,6 +135,7 @@ var adimgrow=["2caldisplay.jpg","yamanotedisplay.jpg","ovendisplay.jpg"];
 var adlinkrow=["2CAL.html","YamanoteLineQuiz.html","Oven.html"];
 
     var timer=1;
+    var perup=0;
  window.onload=function(){
 var countup=setInterval(event,3000);
  function event(){
@@ -146,11 +147,11 @@ var countup=setInterval(event,3000);
 
     if(timer==3){
         timer=0;
+        perup=0;
        }
      }
 
  var progress=document.querySelector("#progress");
- var perup=0;
  var per=setInterval(percent,10);
   function percent(){
      perup++;
