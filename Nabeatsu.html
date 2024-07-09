@@ -3,45 +3,166 @@
  <head>
   <title>ナベアツ</title>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <style>
     .border{
             border-bottom:solid 2px;
            }
+    img{
+        width:30%;
+        }
+
+@media (min-width:500px){
 h1{
    font-size:500%;
    }
 p{
   font-size:250%;
   }
-.Number{
-        width:70%;
+.Suuji{
+        width:65%;
         padding:10px 20px;
         font-size:300%;
         background:#f08080;
         border:3px solid #000000;
-        align: center;
+        text-align: center;
         }
-button{
+.Button{
        width:50%;
        font-size:100px;
        background:f08080;
        text-align:center;
        }
+.Button:hover{
+             width:60%;
+             }
+.adlink{
+        background:#e6e6fa;
+        text-decoration:none;
+       }
+.adp{
+     font-size:200%;
+     margin:0px;
+     }
+.adimg{
+       width:20%;
+      }
+.advertise{
+           margin:10px;
+           }
+       }
+@media (max-width:501px){
+body{
+     background:#b0c4de;
+    }
+h1{
+   font-size:200%;
+   }
+p{
+ font-size:115%;
+ }
+.FoolP{
+       font-size:110%;
+       color:red;
+       }
+.Suuji{
+        width:65%;
+        padding:10px 20px;
+        font-size:100%;
+        background:#f08080;
+        border:3px solid #000000;
+        text-align: center;
+        }
+.Button{
+       width:50%;
+       font-size:25px;
+       background:#f08080;
+       text-align:center;
+       }
+.Button:hover{
+             width:60%;
+             }
+.adlink{
+        background:#e6e6fa;
+        text-decoration:none;
+        font-size:70%;
+       }
+.adp{
+     font-size:120%;
+     margin:0px;
+     }
+.adimg{
+       width:60%;
+      }
+.advertise{
+           margin:10px;
+           }
+.addiv{
+       border:solid 2px #000000;
+       background:#f0f8ff;
+       }
+      }
 </style>
  </head>
  <body>
 <center>
      <h1>ナベアツ判定機<br>Nabeatsu Calculator</h1>
-     <p><a href="https://profile.yoshimoto.co.jp/talent/detail?id=83">世界のナベアツ</a>という人物をご存知だろうか。<br>
+     <p style="word-break:break-all"><a href="https://profile.yoshimoto.co.jp/talent/detail?id=83">世界のナベアツ</a>という人物をご存知だろうか。<br>
         彼は、<span class="border">3の倍数と3が付く数字のときだけアホになる</span>のだ。<br>
         このサイトでは、任意の数字によって世界のナベアツがアホになるかを確かめることができる。<br>
         下のボックスに好きな数字を入れて、ボタンを押してみよう。</p>
-<input type="number" max="9999999999999999" id="Number" class="Number">
-<p id="FoolButton"><input type="button" value="アホチェック" onclick="Click()" class="Number"></p>
+<input type="number" max="9999999999999999" id="Number" class="Suuji">
+<p id="FoolButton" class="FoolP"><input type="button" value="アホになる？" onclick="Click()" class="Suuji"></p>
 <button class="Button" onclick="window.location.reload();">もういちど</button>
+ <div class="addiv">
+    <p class="advertise">広告<br>クリックして遊んでみてください</p>
+ <a class="adlink" id="ADlink" href="https://shami71.github.io/shami71collection/2CAL.html">
+<h5 class="adp" id="ADp">判別式D&解チェッカー</h5>
+<img class="adimg" id="ADimg" src="2caldisplay.jpg" alt="Ad"><br>
+<label>広告変更まで...
+  <progress max="300" value="0" id="progress"></progress>
+</label>
+ </a>
+</div>
+     
+<audio id="voice" src="Nabeatsu.mp3"></audio>
 
-<script>
+<script>    
+var adprow=["判別式D＆解チェッカー","山手線クイズ","電子レンジ温め時間変えるやつ"];
+var adimgrow=["2caldisplay.jpg","yamanotedisplay.jpg","ovendisplay.jpg"];
+var adlinkrow=["2CAL.html","YamanoteLineQuiz.html","Oven.html"];
+
+    var timer=1;
+ window.onload=function(){
+var countup=setInterval(event,3000);
+ function event(){
+ document.getElementById("ADp").innerHTML=adprow[timer];
+ document.getElementById("ADimg").src=adimgrow[timer];
+ document.getElementById("ADlink").href="https://shami71.github.io/shami71collection/"+adlinkrow[timer];
+        timer++;
+     console.log(timer);  //消してええよ//
+
+    if(timer==3){
+        timer=0;
+       }
+     }
+
+ var progress=document.querySelector("#progress");
+ var perup=0;
+ var per=setInterval(percent,10);
+  function percent(){
+     perup++;
+      progress.value=perup;
+    if(perup==300){
+         perup=0;
+        }
+     }
+   }
+    
+
+var voice=document.getElementById("voice");
+    
 function Click(){
   var num=document.getElementById("Number").value;
   var L1=num.substring(0,1);
@@ -78,21 +199,20 @@ function Click(){
     var LN16=Number(L16);
   var SUM=LN1+LN2+LN3+LN4+LN5+LN6+LN7+LN8+LN9+LN10+LN11+LN12+LN13+LN14+LN15+LN16;
 　var Serious=num+"(真面目)";
-  var Fool="サーーーーン!?!?!???!wwwwwwwwwwww"
+  var Fool="サーーーン!?!???!wwwwww";
 
   if(num==""){
-       alert("数字入れてくれ。");
+       alert("数字入れてください");
 }else if(num>9999999999999999){
-       alert("9999999999999999を超えています。数字を小さくしてもらえると助かります。");
+       alert("9999京9999億9999万9999を超えています。数字を小さくしてもらえると助かります。");
      }else if(LN1==3||LN2==3||LN3==3||LN4==3||LN5==3||LN6==3||LN7==3||LN8==3||LN9==3||LN10==3||LN11==3||LN12==3||LN13==3||LN14==3||LN15==3||LN16==3){
-       alert(Fool);
-       document.getElementById(FoolButton).innerHTML=Fool;
+       document.getElementById("FoolButton").innerHTML=Fool;
+    voice.play();
      }else if((SUM % 3)==0){
-       alert(Fool);
-       document.getElementById(FoolButton).innerHTML=Fool;
+       document.getElementById("FoolButton").innerHTML=Fool;
+    voice.play();
       }else{
-       alert(Serious);
-       document.getElementById(FoolButton).innerHTML=Serious;
+    document.getElementById("FoolButton").innerHTML=Serious;
       }
     }
     
