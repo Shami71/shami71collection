@@ -111,7 +111,7 @@ p{
      <p style="word-break:break-all"><a href="https://profile.yoshimoto.co.jp/talent/detail?id=83">世界のナベアツ</a>という人物をご存知だろうか。<br>
         彼は、<span class="border">3の倍数と3が付く数字のときだけアホになる</span>のだ。<br>
         このサイトでは、任意の数字によって世界のナベアツがアホになるかを確かめることができる。<br>
-        下のボックスに好きな数字を入れて、ボタンを押してみよう。</p>
+        下のボックスに好きな数字を入れて、ボタンを押してみよう。<br>小数点以下切り捨てとなります。</p>
 <input type="number" max="9999999999999999" id="Number" class="Suuji">
 <p id="FoolButton" class="FoolP"><input type="button" value="アホになる？" onclick="Click()" class="Suuji"></p>
 <button class="Button" onclick="window.location.reload();">もういちど</button>
@@ -165,7 +165,7 @@ var countup=setInterval(event,3000);
 var voice=document.getElementById("voice");
     
 function Click(){
-  var num=document.getElementById("Number").value;
+  var num=Math.floor(document.getElementById("Number").value);
   var L1=num.substring(0,1);
     var LN1=Number(L1);
   var L2=num.substring(1,2);
