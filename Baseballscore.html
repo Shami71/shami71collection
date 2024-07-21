@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>野球の得点板</title>
+    <style>
+body{
+     background:gray;
+    }
+h1{
+  color:#ffffff;
+ }
+.ball{
+      color:green;
+      text-align:center;
+      width:75%;
+     }
+.strike{
+        color:yellow;
+        text-align:center;
+        width:75%;
+       }
+.out{
+     color:red;
+     text-align:center;
+     width:75%;
+    }
+table{
+      width:200px;
+}
+th{
+   width:50%;
+}
+td.bso{
+       text-align:center;
+       width:25%;
+}
+td.run{
+       text-align:center;
+       width:33%;
+}
+th.name{
+        width:75%;
+}
+td.score{
+         width:25%;
+         text-align:center;
+}
+
+
+        
+    </style>
+</head>
+    
+<body>
+ <h1>野球の中継の右下にあるスコア表的なやつ</h1>
+  <p>パソコンでは、1でファースト、2でセカンド、3でサード、4でボール、5でストライク、6でアウト、8でホームランを操作できます。テンキーだと操作しやすい。</p>
+    <input type="button" onclick="addball()" value="ボール">
+    <input type="button" onclick="addstrike()" value="ストライク">
+    <input type="button" onclick="addout()" value="アウト">  <br>
+    <input type="button" onclick="alterfirst()" value="ファースト">
+    <input type="button" onclick="altersecond()" value="セカンド">
+    <input type="button" onclick="alterthird()" value="サード">  <br>
+    <input type="button" onclick="homerun()" value="ホームラン">  <br>
+    <input type="text" id="teamAvalue" value="チームA">  <br>
+    <input type="text" id="teamBvalue" value="チームB">  <br>
+    <input type="button" onclick="namealter()" value="チーム名変更">
+
+<center>
+<table border="1">
+<tr><th id="sets" colspan="2"></th></tr>
+<tr><td class="bso">B</td><td id="balls" class="ball"></td></tr>
+<tr><td class="bso">S</td><td id="strikes" class="strike"></td></tr>
+<tr><td class="bso">O</td><td id="outs" class="out"></td></tr>
+</table>
+<table border="1">
+<tr><td class="run" id="thirds"></td><td class="run" id="seconds"></td><td class="run" id="firsts"></td></tr>
+</table>
+<table border="1">
+<tr><th class="name" id="teamA"></th><td class="score" id=formers></td></tr>
+<tr><th class="name" id="teamB"></th><td class="score" id="latters"></td></tr>
+</table>
+</center>
+    
+<script>
+    
+var ball=0;
+var strike=0;
+var out=0;
+ var count=["","●","●●","●●●"];
+var change=0;
+var changeValue=["表","裏"];
+var set=1;
+
+var former=0;
+var latter=0;
+
+ var run=["◯","●"];
+var nfirst=0;
+ var first=run[nfirst];
+var nsecond=0;
+ var second=run[nsecond];
+var nthird=0;
+ var third=run[nthird];
+var runner=0;
+
+
+  function update(){      //画面更新//
+      first=run[nfirst];
+      second=run[nsecond];
+      third=run[nthird];
+      runner=nfirst+nsecond+nthird;
+document.getElementById("balls").innerHTML=count[ball];
+document.getElementById("strikes").innerHTML=count[strike];
+document.getElementById("outs").innerHTML=count[out];
+document.getElementById("sets").innerHTML=set+"回"+changeValue[change];
+document.getElementById("firsts").innerHTML=first;
+document.getElementById("seconds").innerHTML=second;
+document.getElementById("thirds").innerHTML=third;
+document.getElementById("formers").innerHTML=former;
+document.getElementById("latters").innerHTML=latter;
+document.getElementById("teamA").innerHTML=document.getElementById("teamAvalue").value;
+document.getElementById("teamB").innerHTML=document.getElementById("teamBvalue").value;
+      console.log(runner);
+    }
+  function checkthree(){
+       if(out==3){   //3アウト//
+            out=0;
+            change++;
+            nfirst=0;
+            nsecond=0;
+            nthird=0;
+            update();
+          }
+        if(change==2){   //チェンジ//
+            change=0;
+            set++;
+            update();
+         }
+      
+  }
+
+
+    
+  function addball(){
+    ball++;
+    if(ball==4){  //4ボール//
+        ball=0;
+        strike=0;
+       if(nfirst==0){  //1塁空き//
+           nfirst++;
+         }else if(nfirst==1&&nsecond==0){  //1塁あり 2塁なし//
+           nsecond=1;
+         }else if(nfirst==1&&nsecond==1&&nthird==1){  //満塁//
+            console.log("1点入りました");
+            if(change==0){
+                former++;
+            }else if(change==1){
+                latter++;
+            }
+        }else if(nfirst==1&&nsecond==1&&nthird==0){  //1.2塁//
+            nthird=1;
+        }
+        
+     }
+  　　update();
+   }
+    
+  function addstrike(){
+    strike++;
+      
+    if(strike==3){
+     strike=0;
+     ball=0;
+     out++;
+     checkthree();
+      }
+       update()
+     }
+    
+  function addout(){
+      out++;
+      strike=0;
+      ball=0;
+      checkthree();
+      update();
+      }
+    
+  function alterfirst(){
+       if(nfirst==0){
+         nfirst=1;
+        }else{
+         nfirst=0;
+        }
+      update();
+    }
+    
+  function altersecond(){
+       if(nsecond==0){
+         nsecond=1;
+        }else{
+         nsecond=0;
+        }
+      update();
+    }
+
+  function alterthird(){
+       if(nthird==0){
+         nthird=1;
+        }else{
+         nthird=0;
+        }
+      update();
+    }
+
+  function homerun(){
+     if(change==0){
+         former=former+runner+1;
+     }else if(change==1){
+         latter=latter+runner+1;
+     }
+         nfirst=0;
+         nsecond=0;
+         nthird=0;
+         update();
+    }
+
+  function namealter(){
+    update();
+    }
+    
+     update();
+document.addEventListener("keydown",function(event){
+  if(event.key==="1"){
+    alterfirst();
+  }
+  if(event.key==="2"){
+    altersecond();
+  }
+  if(event.key==="3"){
+    alterthird();
+  }
+  if(event.key==="4"){
+    addball();
+  }
+  if(event.key==="5"){
+    addstrike();
+  }
+  if(event.key==="6"){
+    addout();
+  }
+  if(event.key==="8"){
+    homerun();
+  }
+});
+
+
+    
+</script>
+</body>
