@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+ <html lang="ja">
+    <head>
+        <title>√でGO!</title>
+        <meta charset="UTF-8">
+        <style>
+body{
+     color:black
+     background-color:white;
+}
+.header{
+        display:flex;
+}
+.clearcount{
+            font-size:300%;
+            color:red;
+}
+.home{
+      font-size:600%;
+      white-space: nowrap;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+}
+.cource{
+        white-space: nowrap;
+        font-size: 400%;
+}
+.square{
+   text-align: center;
+   font-size: 500%;
+}
+.fillin{
+        text-align: center;
+}
+.fillout{
+  display: flex;
+  justify-content: center;
+}
+.root{
+      font-size:300%;
+}
+.answerbox{
+           text-align: center;
+           width:50%;
+           height: 25%;
+           font-size: 400%;
+}
+.tenkey{
+        text-align: center;
+        width:75%;
+        color:white;
+}
+.tenbox{
+        width:30%;
+        font-size:300%;
+}
+.tenbox:hover{
+  color:red;
+}
+.ten{
+     font-size:200%;
+     width:100%;
+     height:120%;
+     background-color:white;
+}
+.ten:hover{
+  background-color: aquamarine;
+}
+
+.howtoplay{
+           font-size:225%;
+}
+.countbutton{
+             font-size: 175%;
+}
+h1{
+  font-family: "Sixtyfour", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "BLED" 0,
+    "SCAN" 0;
+}
+.ten{
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+h2{
+  font-family: "ZCOOL QingKe HuangYou", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.home{
+  font-family: "Stick", ;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+p,.square,.countbutton,.course{
+  font-family: "Orbitron", "Stick" ,sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sixtyfour&family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Stick&family=Titillium+Web:wght@700&display=swap" rel="stylesheet">
+
+
+    </head>
+    <body id="entire">
+      <div class="header">
+       <h1 class="home" onclick="gotohell()">√deGO!</h1>
+       <h2 id="cource" class="cource"></h2>
+       <h2 id="qpercent" calss="howtoplay"></h2>
+       <progress id="progress" max="100" min="0"></progress>
+        <h2 class="clearcount" id="clearcount"></h2>
+      </div>
+      <p id="intro" class="howtoplay">あそびかた<br>
+                                     　「むずかしさ」「問題タイプ」を選んで「START」をクリック。<br>
+                                     　出題された問題を解き、キーボードや画面内の数字ボタンで答えを入力。<br>
+                                     　Delete(Backspace)で答え全削除、Enterで答え合わせ。<br>
+                                     　どうしても解けなかったら、Delete(Backspace)を5回押してスキップ。<br>
+                                     　Score100点目指してがんばってください！
+                                     <br>数字の見本... 0,1,2,3,4,5,6,7,8,9<br>
+                    むずかしさ<select id="difficulty" class="countbutton">
+                      <option id="opt1" value="1">EASY</option>
+                      <option id="opt2" value="2">NORMAL</option>
+                      <option id="opt3" value="3">HARD</option>
+                    </select><br>
+問題タイプ<input type="button" value="1.414→√2" onclick="typeselect('TypeA')" id="a" class="countbutton">
+<input type="button" value="√4→2" onclick="typeselect('TypeB')" id="b" class="countbutton">
+      <p id="startbutton"><input type="button" value="START" class="countbutton" onclick="firstmakequestion()"></p>
+      <h2 id="square" class="square"></h2>
+       <div class="fillin">
+      <input type="text" id="answer" class="answerbox" readonly>
+       <div class="fillout">
+      <table class="tenkey">
+        <tr><td class="tenbox"><input type="button" value="7" onclick="addnum('7')" class="ten"></td><td class="tenbox"><input type="button" value="8" onclick="addnum('8')" class="ten"></td><td class="tenbox"><input type="button" value="9" onclick="addnum('9')" class="ten"></td></tr>
+        <tr><td class="tenbox"><input type="button" value="4" onclick="addnum('4')" class="ten"></td><td class="tenbox"><input type="button" value="5" onclick="addnum('5')" class="ten"></td><td class="tenbox"><input type="button" value="6" onclick="addnum('6')" class="ten"></td></tr>
+        <tr><td class="tenbox"><input type="button" value="1" onclick="addnum('1')" class="ten"></td><td class="tenbox"><input type="button" value="2" onclick="addnum('2')" class="ten"></td><td class="tenbox"><input type="button" value="3" onclick="addnum('3')" class="ten"></td></tr>
+        <tr><td class="tenbox"><input type="button" value="Delete" onclick="deletekey()" class="ten"></td><td class="tenbox"><input type="button" value="0" onclick="addnum('0')" class="ten"></td><td class="tenbox"><input type="button" value="Enter" onclick="answer()" class="ten"></td></tr>
+      </table>
+       </div>
+      <p id="question"></p>
+       <h2 id="replay"></p>
+
+      <audio id="true" src="true.mp3" preload="auto"></audio>
+      <audio id="false" src="false.mp3" preload="auto"></audio>
+      <audio id="all" src="allclear.mp3" preload="auto"></audio>
+      <audio id="hell" src="hell.mp3" preload="auto"></audio>
+      <audio id="give" src="give.mp3" preload="auto"></audio>
+
+     <script>
+       var myanswer;  //回答//
+       var question;  //答え 2       //
+       var square;    //問題 1.414...//
+       var questr;    //questionのNumber型//
+       var nextquestion=null;
+       var TIME;           //問題遷移の秒数//
+       var downtime=500; //問題繊維の秒数の定義//
+       var clear="";       //◯の数//
+       var clearnumber=0;  //正解数// 
+       var truemusic=document.getElementById("true");    //正解の音//
+       var falsemusic=document.getElementById("false");  //失敗の音//
+       var allclear=document.getElementById("all");      //全問正解の音//
+       var hellmusic=document.getElementById("hell");    //HELL MODEの音//
+       var givemusic=document.getElementById("give");    //ギブアップの音//
+       var now=-1;    //回答可能なときは1にする、最初は-1、回答不可能時は0//
+       var qcount=10;   //問題数の選択前の定義//
+       var proper=0; //正解％//
+       var qtype;
+       var loadnum=0;
+       var ll="Now loading...";
+       var misscount=0; /*ミスした回数*/
+       var hell=0;
+       var timecount;
+       var timer=0;  //回答にかかった時間//
+       var score=0; //スコア//
+       var losstime=0; //ロスタイム//
+       var letter; //最後のコメント//
+       var difficulty=0;  //難易度。1はEASY、2はNORMAL、3はHARD、4はHELL//
+       var fx;
+       var giveupcounter=0; //×5につき１ギブ//
+       var giveup=0; //ギブした回数//
+
+
+       function typeselect(ts){
+document.getElementById("a").style.backgroundColor =""
+document.getElementById("b").style.backgroundColor =""
+ if(ts=="TypeA"){
+document.getElementById("a").style.backgroundColor = 'lightsteelblue';
+ }else if(ts=="TypeB"){
+document.getElementById("b").style.backgroundColor = 'lightsteelblue';
+ }
+qtype=ts; //1ならA，2ならB
+}
+
+
+    function gotohell(){
+      hell++
+      if(hell>=5&&now==-1){
+        document.body.style.backgroundColor = "black";
+        document.body.style.color = "white";
+        hellmusic.play();
+        document.getElementById("opt1").innerHTML="HELL";
+        document.getElementById("opt2").innerHTML="HELL";
+        document.getElementById("opt3").innerHTML="HELL";
+        document.getElementById("opt1").value="4";
+        document.getElementById("opt2").value="4";
+        document.getElementById("opt3").value="4";
+
+      }
+    }
+
+    loading=setInterval(load,150);
+
+    function load(){ //loadingを動かすためだけのやつ//
+      loadnum++;
+      document.getElementById("square").innerHTML=ll.slice(0,loadnum);
+      if(loadnum>13){
+        loadnum=0;
+      }
+    }
+
+     function firstmakequestion(){
+      if(qtype===undefined){
+        alert("問題タイプを選んでください");
+      }else{
+
+              if(hell>=5&&now==-1){  //HELLか通常かを見分けてむずかしさを設定//
+        difficulty=4;
+      }else{
+        difficulty=document.getElementById("difficulty").value;
+      }
+
+      document.getElementById("square").innerHTML="読み込み中...";
+      document.getElementById("intro").innerHTML="";
+      document.getElementById("startbutton").innerHTML="";
+      document.getElementById("progress").value=0;
+      document.getElementById("answer").value="";
+
+      nextgame();
+      now=0;
+     }
+     }
+
+     function stopwatch(){ //秒数計測//
+      timer++;
+     }
+
+
+     function makequestion(){ //問題制作//
+      document.getElementById("answer").value="";
+      now=1;
+
+      if(difficulty==1){
+        fx=4/9*(clearnumber+1)-4/9;
+      }else if(difficulty==2){
+        fx=8/9*(clearnumber+1)-8/9;
+      }else if(difficulty==3){
+        fx=4/9*(clearnumber+1)+41/9
+      }else if(difficulty==4){
+        fx=100;
+      }
+
+    if(qtype=="TypeA"){ //問題A(1.414 to 2)が選ばれたとき//
+      if(fx>99){
+        question=Number(Math.floor(Math.random()*9001)+1000);
+         console.log("LEVEL:HELL");
+      }else if(fx==10){
+        question=Number(Math.floor(Math.random()*901)+100);
+         console.log("最終問題");
+      }else if(fx>=8){
+        question=Number(Math.floor(Math.random()*176)+75);
+         console.log("LEVEL:5");
+      }else if(fx>=6){
+        question=Number(Math.floor(Math.random()*76)+25);
+         console.log("LEVEL:4");
+      }else if(fx>=4){
+        question=Number(Math.floor(Math.random()*41)+10);
+         console.log("LEVEL:3");
+      }else if(fx>=2){
+        question=Number(Math.floor(Math.random()*21)+5);
+         console.log("LEVEL:2");
+      }else{
+        question=Number(Math.floor(Math.random()*9)+2);
+         console.log("LEVEL:1");
+      }
+       questr=Number(question);
+       square=Math.sqrt(question);
+          document.getElementById("square").innerHTML="√? ="+square;
+
+      }else if(qtype=="TypeB"){  //問題B(4 to 2)が選ばれたとき//
+        if(hell>=5){
+        question=Number(Math.floor(Math.random()*9001)+1000);
+         console.log("LEVEL:HELL");
+        }else if(fx==10){
+          question=Number(Math.floor(Math.random()*901)+100);
+           console.log("最終問題");
+        }else if(fx>=8){
+          question=Number(Math.floor(Math.random()*76)+500);
+          console.log("LEVEL:5");
+        }else if(fx>=6){
+          question=Number(Math.floor(Math.random()*51)+50);
+          console.log("LEVEL:4");
+        }else if(fx>=4){
+          question=Number(Math.floor(Math.random()*51)+26);
+          console.log("LEVEL:3");
+        }else if(fx>=2){
+          question=Number(Math.floor(Math.random()*51)+1);
+           console.log("LEVEL:2");
+        }else{
+          question=Number(Math.floor(Math.random()*9)+2);
+           console.log("LEVEL:1");
+        }
+        square=question**2;
+       questr=Number(question);
+           document.getElementById("square").innerHTML="√"+square+"=?";
+    }
+        console.log("答え:"+question);
+        console.log("問題:"+square);
+       document.getElementById("cource").innerHTML=(qcount+"問");
+      }
+
+
+
+
+      function answer(){  //答え合わせ//
+        if(now!=1){
+        }else{
+          myanswer=Number(document.getElementById("answer").value);
+           console.log("自分の答え:"+myanswer);
+           if(myanswer==questr){  //正解の処理//
+            document.getElementById("square").innerHTML="GREAT!";
+            if(qtype=="TypeA"){
+            document.getElementById("answer").value= (0.000001*(Math.floor(1000000*square))+"=√"+questr);  //要改善//
+            }else if(qtype=="TypeB"){
+              document.getElementById("answer").value= ("√"+questr**2+"="+Math.floor(questr)); 
+            }
+            clear=clear+"〇";
+            document.getElementById("clearcount").innerHTML=clear;
+            clearnumber++;
+            proper=clear.length / (qcount);
+            proper=Math.floor(proper*1000)/10
+            document.getElementById("progress").value=proper;
+            document.getElementById("qpercent").innerHTML=proper+"%";
+            giveupcounter=0;
+            if(clearnumber<qcount){ //全問クリアか判定//
+            nextgame();
+            truemusic.play();
+            }else{
+              allclear.play();
+              finish();
+            }
+           }else{  //不正解の処理//
+            document.getElementById("answer").value="";
+            falsemusic.play();
+            misscount++;
+           }
+          }
+        }
+
+function nextgame(){ //秒数遷移//
+  clearInterval(loading);
+  now=0;
+ nextquestion=setInterval(countdown,downtime);  //1000に直す//
+ TIME=3;  //次の問題までの秒数//
+}
+
+        function countdown(){ //クリアしたときに秒数を数える//
+           document.getElementById("square").innerHTML= TIME ;
+           if(TIME<=0){
+            clearInterval(nextquestion);
+            makequestion();
+             if(clearnumber==0){
+    timecount=setInterval(stopwatch,1000);
+ }
+           }else{
+            TIME--;
+           }
+        }
+
+    function replay(){ //表示を遅らせるためのムダ関数//
+         document.getElementById("replay").innerHTML= "<input type='button' value='REPLAY' onclick='window.location.reload();'>";
+    }
+
+  function finish(){ //最後の問題をクリアしたとき//
+    clearInterval(timecount);
+    now=0;
+    document.getElementById("answer").value="";
+    document.getElementById("answer").value +="Thank you for playing!";
+
+    losstime=qcount*3*downtime/1000;
+    score=Math.floor(-1/120*(timer-losstime-10)**2+100.835)-misscount*3-giveup*10; //score計算//
+    console.log("!!!!!(timer,score,losstime,miss=)"+timer+","+score+","+losstime+","+misscount);
+     if(score==100){
+      letter="Perfect!!!<br>Are you a computer??<br>超天才なあなたへ隠しモードを紹介。<br>ゲーム開始前に左上の「√でGO!」を何度かクリックすると...？";
+     }else if(score>=90){
+      letter="Splendid!!<br>天才なあなたへ隠しモードを紹介。<br>ゲーム開始前に左上の「√でGO!」を何度かクリックすると...？";
+     }else if(score>=70){
+      letter="Great!!";
+     }else if(score>=50){
+      letter="Good!";
+     }else if(score>=30){
+      letter="Keep going!";
+     }else{
+      letter="Fresh start!";
+     }
+    document.getElementById("square").innerHTML=(letter+"Score:"+score+"点");
+    setTimeout(replay,5000);  //allclearを流すために表示をずらす//
+  }
+
+
+  function addnum(addnumber){ //テンキーを動作させる//
+    if(now==1){
+    document.getElementById("answer").value += addnumber;
+    }
+  }
+
+  function deletekey(){ //テンキーのデリートキーの動作//
+
+    document.getElementById("answer").value="";
+
+        giveupcounter++;                                       //ギブアップ処理//
+    if(giveupcounter==5&&now==1){
+      giveup++;
+      document.getElementById("square").innerHTML="GIVE UP...";
+      givemusic.play();
+      nextgame();
+      giveupcounter=0;
+      if(qtype=="TypeA"){
+            document.getElementById("answer").value= (0.000001*(Math.floor(1000000*square))+"=√"+questr);  //要改善//
+            }else if(qtype=="TypeB"){
+              document.getElementById("answer").value= ("√"+questr**2+"="+Math.floor(questr)); 
+            }
+    }
+  }
+
+        document.addEventListener("keydown",function(event){ //文字入力の制限//
+          if(now!=1){
+}else{
+  if(event.key==="0"){
+    document.getElementById("answer").value+=0;
+  }
+  if(event.key==="1"){
+    document.getElementById("answer").value+=1;
+  }
+  if(event.key==="2"){
+    document.getElementById("answer").value+=2;
+  }
+  if(event.key==="3"){
+    document.getElementById("answer").value+=3;
+  }
+  if(event.key==="4"){
+    document.getElementById("answer").value+=4;
+  }
+  if(event.key==="5"){
+    document.getElementById("answer").value+=5;
+  }
+  if(event.key==="6"){
+    document.getElementById("answer").value+=6;
+  }
+  if(event.key==="7"){
+    document.getElementById("answer").value+=7;
+  }
+  if(event.key==="8"){
+    document.getElementById("answer").value+=8;
+  }
+  if(event.key==="9"){
+    document.getElementById("answer").value+=9;
+  }
+  if(event.key==="Enter"){
+    answer();
+  }
+  if(event.key==="Backspace"||event.key==="Delete"){
+    document.getElementById("answer").value="";
+    giveupcounter++;                                       //ギブアップ処理//
+    if(giveupcounter==5){
+      giveup++;
+      document.getElementById("square").innerHTML="GIVE UP...";
+      givemusic.play();
+      nextgame();
+      giveupcounter=0;
+      if(qtype=="TypeA"){
+            document.getElementById("answer").value= (0.000001*(Math.floor(1000000*square))+"=√"+questr);  //要改善//
+            }else if(qtype=="TypeB"){
+              document.getElementById("answer").value= ("√"+questr**2+"="+Math.floor(questr)); 
+            }
+    }
+  }
+}});
+
+     </script>
+
+    </body>
+ </html>
